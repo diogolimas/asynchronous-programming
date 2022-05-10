@@ -8,5 +8,7 @@ namespace asynchronous_programming.Interfaces
 {
     public interface ILoadVerifier
     {
+        Task<bool> VerifyAsync();
+        bool Verify();
     }
 }

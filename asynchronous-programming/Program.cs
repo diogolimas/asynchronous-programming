@@ -62,7 +62,30 @@ namespace asynchronous_programming
 
 
             Console.WriteLine($"Total time taken: {DateTime.Now.Subtract(startTime).TotalSeconds}");
-            //total: 0.2s
+            //total: 15s
+
+        }
+    }
+
+
+    public class Program3
+    {
+        static async Task Main(string[] args)
+        {
+            var driver = new Driver();
+            var verifier = new LoadVerifier();
+            var assigner = new NewLoadAssigner();
+
+            DateTime startTime = DateTime.Now;
+
+            var driverTask = driver.ReportToBackOfficeAsync(); //require 5 seconds
+            var verifierTask = verifier.VerifyAsync(); // require 5 seconds
+            var assignerTask = assigner.AssignAsync(); // require 5 seconds
+
+            Task.WaitAll(driverTask, verifierTask, assignerTask);
+
+            Console.WriteLine($"Total time taken: {DateTime.Now.Subtract(startTime).TotalSeconds}");
+            //total: 15s
 
         }
     }

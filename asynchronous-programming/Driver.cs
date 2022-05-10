@@ -1,5 +1,6 @@
 ﻿using asynchronous_programming.Interfaces;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace asynchronous_programming
 {
@@ -10,6 +11,11 @@ namespace asynchronous_programming
         public void ReportToBackOffice()
         {
             Thread.Sleep(5 * ONE_SECOND_IN_MS);
+        }
+
+        public async Task ReportToBackOfficeAsync()
+        {
+            await Task.Delay(5 * ONE_SECOND_IN_MS);
         }
     }
 }
